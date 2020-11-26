@@ -1,5 +1,5 @@
 function showRegistrationPage() {
-    $("#login-page").hide()
+    $("#login-page").show()
     $("#registration-page").show()
     $("#main-page").hide()
     $("#btn-logout").hide()
@@ -17,10 +17,11 @@ function showMainPage() {
     $("#btn-logout").show()
 }
 function registration() {
-    const email = $("#email-registration").val()
-    const password = $("#password-registration").val()
+    const email = $("#email-register").val()
+    const password = $("#password-register").val()
+    console.log(email, '<<<email', password, '<<<password');
     $.ajax({
-        url: 'http://localhost:3000/registration',
+        url: 'http://localhost:3000/user/register',
         method: 'POST',
         data: {
             email,
@@ -28,22 +29,22 @@ function registration() {
         }
     })
     .done(response => {
-        localStorage.setItem('access_token', response.access_token)
+        // localStorage.setItem('access_token', response.access_token)
         showLoginPage()
     })
     .fail((xhr, textStatus) => {
         console.log(xhr, textStatus)
     })
     .always(() => {
-        $("#email-registration").val("")
-        $("#password-registration").val("")
+        $("#email-register").val("")
+        $("#password-register").val("")
     })
 }
 function login() {
     const email = $("#email-login").val()
     const password = $("#password-login").val()
     $.ajax({
-        url: 'http://localhost:3000/login',
+        url: 'http://localhost:3000/user/login',
         method: 'POST',
         data: {
             email,
@@ -55,6 +56,7 @@ function login() {
         showMainPage()
     })
     .fail((xhr, textStatus) => {
+        alert(xhr.responeText)
         console.log(xhr, textStatus)
     })
     .always(() => {
