@@ -188,8 +188,8 @@ function checkTrivia(){
         <img src="https://memegenerator.net/img/instances/47555959/cheer-up-soon-loser.jpg">
         `)
     }
-
 }
+
 function showActivity(){
     $.ajax({
         url: `${basicUrl}gabut/bored`,
@@ -208,7 +208,25 @@ function showActivity(){
     .fail(xhr => {
         console.log(xhr)
     })
+
+}
+
+function onSignIn(googleUser) {
+    const googleToken = googleUser.getAuthResponse().id_token;
+    $.ajax({
+        url: "http://localhost:3000/user/googleLogin",
+        method: "POST",
+        data: {
+            googleToken
+        }
+    })
+    .done((response)=>{
+        localStorage.setItem("access_token", response.access_token);
+        console.log(response.access_token);
+        showMainPage();
+    })
+    .fail((xhr)=>{
+        console.log(xhr)
+    })
 }
   
-
-     
