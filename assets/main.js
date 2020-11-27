@@ -35,4 +35,7 @@ $(document).ready(function() {
       $('#back-register').click(() => {
         showRegistrationPage()
       })
+      $("#button-bored").click(() => {
+        showActivity()
+      })
 });

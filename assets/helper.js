@@ -188,7 +188,27 @@ function checkTrivia(){
         <img src="https://memegenerator.net/img/instances/47555959/cheer-up-soon-loser.jpg">
         `)
     }
-      
+
 }
+function showActivity(){
+    $.ajax({
+        url: `${basicUrl}gabut/bored`,
+        method: "GET",
+        headers: {
+            access_token: localStorage.getItem("access_token")
+        }
+    })
+    .done(response => {
+        $("#boredactivity").empty()
+        console.log(response.data.activity)
+        $("#boredactivity").prepend(`
+        <h4>${response.data.activity}</h4>
+        `)
+    })
+    .fail(xhr => {
+        console.log(xhr)
+    })
+}
+  
 
      
