@@ -190,6 +190,27 @@ function checkTrivia(){
     }
 }
 
+function showActivity(){
+    $.ajax({
+        url: `${basicUrl}gabut/bored`,
+        method: "GET",
+        headers: {
+            access_token: localStorage.getItem("access_token")
+        }
+    })
+    .done(response => {
+        $("#boredactivity").empty()
+        console.log(response.data.activity)
+        $("#boredactivity").prepend(`
+        <h4>${response.data.activity}</h4>
+        `)
+    })
+    .fail(xhr => {
+        console.log(xhr)
+    })
+
+}
+
 function onSignIn(googleUser) {
     const googleToken = googleUser.getAuthResponse().id_token;
     $.ajax({
