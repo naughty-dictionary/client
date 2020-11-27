@@ -1,6 +1,6 @@
 function showRegistrationPage() {
-    $("#login-page").show()
     $("#registration-page").show()
+    $("#login-page").hide()
     $("#main-page").hide()
     $("#btn-logout").hide()
 }
@@ -33,6 +33,7 @@ function registration() {
         showLoginPage()
     })
     .fail((xhr, textStatus) => {
+        alert(`Email has been created`)
         console.log(xhr, textStatus)
     })
     .always(() => {
@@ -56,7 +57,7 @@ function login() {
         showMainPage()
     })
     .fail((xhr, textStatus) => {
-        alert(xhr.responeText)
+        alert(`Email or Password Fail`)
         console.log(xhr, textStatus)
     })
     .always(() => {
