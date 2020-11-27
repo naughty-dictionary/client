@@ -189,7 +189,6 @@ function checkTrivia(){
         `)
     }
 }
-
 function showActivity(){
     $.ajax({
         url: `${basicUrl}gabut/bored`,
@@ -210,7 +209,6 @@ function showActivity(){
     })
 
 }
-
 function onSignIn(googleUser) {
     const googleToken = googleUser.getAuthResponse().id_token;
     $.ajax({
