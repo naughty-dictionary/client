@@ -29,4 +29,10 @@ $(document).ready(function() {
       $("#button-trivia").on("click", () => {
         getTriviaQuestion()
       })
+      $('#back-login').click(()=> {
+        showLoginPage()
+      })
+      $('#back-register').click(() => {
+        showRegistrationPage()
+      })
 });
