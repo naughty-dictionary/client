@@ -117,6 +117,16 @@
           </div>
   
           <div class="tab-pane container fade" id="tebak-tebakan">
+
+            <img src="./assets/a9eea9d5-4d3a-4201-b148-1e9503f035ff_200x200.png" alt="logo" class="mx-auto d-block" width="250">
+
+            <div class="card-body bg-success text-white text-center mx-auto" style="width: 150px; height: 60px; margin-top: 50px; margin-bottom: 50px;">
+              <p class="card-text" style="font-size: large;" id="button-trivia">Play Game</p>
+            </div>
+
+            <div class="mb-3" id="triviaquestion">
+
+            </div>
   
           </div>
           <div class="tab-pane container fade" id="rekomendasikegiatan">
@@ -130,52 +140,5 @@
     <script src="./assets/helper.js"></script>
     <script src="./assets/main.js"></script>
     
-    <script>
-    let dataOwl;
-    let basicUrl = "http://localhost:3000/"
-    function showOwlBotImage(){
-      $.ajax({
-        url: `${basicUrl}owl`,
-        method: "GET"
-      })
-      .done(response => {
-        dataOwl = response
-        $("#random-image").prepend(`
-        <div class="card-custom uk-card uk-card-default uk-card-hover uk-card-body">
-          <img src="${response.definitions[0].image_url}" alt="image">
-        </div>
-      `)
-      })
-      .fail(err => {
-        console.log(err)
-      })
-
-    }
-
-    function checkOwl(answer){
-      if(answer.toLowerCase() === dataOwl.word){
-        $("#description").prepend(`
-        <div>
-          <p>${dataOwl.word}</p>
-          <p>${dataOwl.definitions[0].definition}</p>
-        </div>
-      `)
-      }
-      else {
-      }
-    }
-
-      $(document).ready(() => {
-        $("#button-tebak-gambar").on("click", (event) => {
-          event.preventDefault()
-          showOwlBotImage()
-        })
-
-        $("#go-tebak-tebakan").on("click", () => {
-          let answer = $("#answerowl").val()
-          checkOwl(answer)
-        })
-      })
-    </script>
   </body>
 </html>

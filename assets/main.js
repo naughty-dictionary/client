@@ -15,4 +15,18 @@ $(document).ready(function() {
     $("#btn-logout").on("click", function (e) {
         logout()
     })
+
+    $("#button-tebak-gambar").on("click", () => {
+        empty()
+        showOwlBotImage()
+      })
+    
+      $("#go-tebak-tebakan").on("click", () => {
+        let answer = $("#answerowl").val()
+        checkOwl(answer)
+      })
+    
+      $("#button-trivia").on("click", () => {
+        getTriviaQuestion()
+      })
 });
