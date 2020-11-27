@@ -33,7 +33,7 @@ function registration() {
         showLoginPage()
     })
     .fail((xhr, textStatus) => {
-        alert(`Email has been created`)
+        alert(xhr.responseText)
         console.log(xhr, textStatus)
     })
     .always(() => {
@@ -85,7 +85,10 @@ function empty(){
 function showOwlBotImage(){
     $.ajax({
         url: `${basicUrl}gabut/owl`,
-        method: "GET"
+        method: "GET",
+        headers: {
+            access_token: localStorage.getItem("access_token")
+        }
     })
     .done(response => {
         dataOwl = response
@@ -108,6 +111,7 @@ function checkOwl(answer){
     if(answer.toLowerCase() === dataOwl.word){
         $("#description").prepend(`
             <div>
+                <p>Cie Bener UwU </p>
                 <p>${dataOwl.word}</p>
                 <p>${dataOwl.definitions[0].definition}</p>
             </div>
@@ -115,9 +119,16 @@ function checkOwl(answer){
     }
     else {
         $("#random-image").empty()
+        $("#description").prepend(`
+            <div>
+                <p>MAMPUS SALAH LO</p>
+                <p>${dataOwl.word}</p>
+                <p>${dataOwl.definitions[0].definition}</p>
+            </div>
+        `)
         $("#random-image").prepend(`
         <div class="card-custom uk-card uk-card-default uk-card-hover uk-card-body">
-          <img src="https://memegenerator.net/img/instances/47555959.jpg" alt="image" id="owlimage">
+          <img src="https://memegenerator.net/img/instances/47555959/cheer-up-soon-loser.jpg" alt="image" id="owlimage">
         </div>
       `)
       }
@@ -126,7 +137,10 @@ function checkOwl(answer){
 function getTriviaQuestion(){
     $.ajax({
         url: `${basicUrl}gabut/trivia`,
-        method: "GET"
+        method: "GET",
+        headers: {
+            access_token: localStorage.getItem("access_token")
+        }
     })
     .done((response) => {
         $("#triviaquestion").empty()
@@ -152,22 +166,26 @@ function checkTrivia(){
     let answerFalse = $("#trivia-false").is(":checked")
     if(triviaAnswer.toLowerCase() === "false" && answerFalse){
         $("#triviaquestion").prepend(`
+        <p>Cie bener UwU</p>
         <img src="https://memegenerator.net/img/instances/46303021.jpg">
         `)
     }
     else if (triviaAnswer.toLowerCase() === "false" && answerTrue){
         $("#triviaquestion").prepend(`
-        <img src="https://memegenerator.net/img/instances/47555959.jpg">
+        <p>Mampus salah lo</p>
+        <img src="https://memegenerator.net/img/instances/47555959/cheer-up-soon-loser.jpg">
         `)
     }
     else if(triviaAnswer.toLowerCase() === "true" && answerTrue){
         $("#triviaquestion").prepend(`
+        <p>Cie bener UwU</p>
         <img src="https://memegenerator.net/img/instances/46303021.jpg">
         `)
     }
     else if(triviaAnswer.toLowerCase() === "true" && answerFalse){
         $("#triviaquestion").prepend(`
-        <img src="https://memegenerator.net/img/instances/47555959.jpg">
+        <p>Mampus salah lo</p>
+        <img src="https://memegenerator.net/img/instances/47555959/cheer-up-soon-loser.jpg">
         `)
     }
       
