@@ -85,7 +85,10 @@ function empty(){
 function showOwlBotImage(){
     $.ajax({
         url: `${basicUrl}gabut/owl`,
-        method: "GET"
+        method: "GET",
+        headers: {
+            access_token: localStorage.getItem("access_token")
+        }
     })
     .done(response => {
         dataOwl = response
@@ -126,7 +129,10 @@ function checkOwl(answer){
 function getTriviaQuestion(){
     $.ajax({
         url: `${basicUrl}gabut/trivia`,
-        method: "GET"
+        method: "GET",
+        headers: {
+            access_token: localStorage.getItem("access_token")
+        }
     })
     .done((response) => {
         $("#triviaquestion").empty()
